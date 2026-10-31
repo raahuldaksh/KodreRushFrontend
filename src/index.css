@@ -22,51 +22,51 @@
   --color-ring: hsl(var(--ring));
 }
 
-/* Linear-inspired Modern Dark Theme (Default) */
+/* Premium SaaS Dark Palette */
 :root {
-  --background: 240 10% 4%;           /* #09090b */
-  --foreground: 0 0% 98%;            /* #fafafa */
-  --card: 240 6% 9%;                 /* #16161a */
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 5%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;               /* Pure white high-contrast CTA */
-  --primary-foreground: 240 10% 4%;
-  --secondary: 240 5% 15%;           /* #242429 */
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 5% 15%;
-  --muted-foreground: 240 5% 65%;    /* #a1a1aa */
-  --accent: 240 5% 15%;
-  --accent-foreground: 0 0% 98%;
+  --background: 222 47% 6%;          /* #080c14 - Deep Midnight Obsidian */
+  --foreground: 210 40% 98%;         /* #f8fafc */
+  --card: 222 47% 9%;                /* #0d1522 - Glassmorphic Surface */
+  --card-foreground: 210 40% 98%;
+  --popover: 222 47% 9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 238 82% 67%;            /* #6366f1 - Electric Indigo */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 217 33% 15%;          /* #1a2332 */
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 33% 15%;
+  --muted-foreground: 215 20% 65%;   /* #94a3b8 */
+  --accent: 217 33% 17%;
+  --accent-foreground: 210 40% 98%;
   --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5% 18%;              /* Subtle border #2c2c32 */
-  --input: 240 5% 18%;
-  --ring: 0 0% 98%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217 33% 16%;             /* #1c2738 */
+  --input: 217 33% 16%;
+  --ring: 238 82% 67%;
   --radius: 0.75rem;
 }
 
-/* Pristine Clean Light Theme */
+/* Clean Daylight Theme */
 .light {
-  --background: 0 0% 99%;            /* #fcfcfd */
-  --foreground: 240 10% 4%;          /* #09090b */
-  --card: 0 0% 100%;                 /* #ffffff */
-  --card-foreground: 240 10% 4%;
+  --background: 210 40% 98%;         /* #f8fafc */
+  --foreground: 222 47% 11%;         /* #0f172a */
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
   --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 4%;
-  --primary: 240 10% 4%;             /* Deep black CTA */
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 5% 96%;
-  --secondary-foreground: 240 10% 4%;
-  --muted: 240 5% 96%;
-  --muted-foreground: 240 4% 46%;
-  --accent: 240 5% 96%;
-  --accent-foreground: 240 10% 4%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 221 83% 53%;            /* #2563eb */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
   --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 6% 90%;              /* #e4e4e7 */
-  --input: 240 6% 90%;
-  --ring: 240 10% 4%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214 32% 91%;             /* #e2e8f0 */
+  --input: 214 32% 91%;
+  --ring: 221 83% 53%;
 }
 
 * {
@@ -80,13 +80,14 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.12), transparent),
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+    radial-gradient(circle at 50% -10%, rgba(99, 102, 241, 0.15), transparent 70%),
+    radial-gradient(circle at 100% 50%, rgba(14, 165, 233, 0.08), transparent 50%),
+    radial-gradient(circle at 0% 80%, rgba(168, 85, 247, 0.06), transparent 50%);
   background-attachment: fixed;
 }
 
 .light body {
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(24, 24, 27, 0.03), transparent),
-    radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0.02) 0%, transparent 60%);
+    radial-gradient(circle at 50% -10%, rgba(99, 102, 241, 0.06), transparent 70%),
+    radial-gradient(circle at 100% 50%, rgba(14, 165, 233, 0.04), transparent 50%);
 }
