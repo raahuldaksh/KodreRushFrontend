@@ -65,45 +65,45 @@ export function TaskCard({ task, onEdit, onDelete, isOverlay = false }) {
       style={style}
       className={cn(
         'group relative touch-none',
-        isDragging && 'opacity-30'
+        isDragging && 'opacity-20'
       )}
     >
       <Card
         className={cn(
-          'p-3.5 bg-white border border-slate-200/80 rounded-xl transition-all duration-150',
-          'hover:border-slate-300 hover:shadow-sm',
-          isOverlay && 'shadow-xl border-blue-400 rotate-1 cursor-grabbing',
-          isOverdue && 'border-l-4 border-l-red-500'
+          'p-3.5 bg-zinc-900/60 hover:bg-zinc-800/40 border border-zinc-800/70 hover:border-zinc-700/90 rounded-xl transition-all duration-150 backdrop-blur-sm',
+          'hover:shadow-sm',
+          isOverlay && 'shadow-2xl border-zinc-400 bg-zinc-900 rotate-1 cursor-grabbing scale-[1.02]',
+          isOverdue && 'border-l-2 border-l-red-500'
         )}
       >
         {/* Top Row: Priority Badge + Drag Grip + Actions */}
-        <div className="flex items-center justify-between gap-2 mb-2">
+        <div className="flex items-center justify-between gap-2 mb-1.5">
           <div className="flex items-center gap-1.5">
             {/* Drag Handle */}
             <button
               {...attributes}
               {...listeners}
-              className="p-1 -ml-1 text-slate-400 hover:text-slate-600 rounded cursor-grab active:cursor-grabbing focus:outline-none"
-              title="Drag to move"
+              className="p-1 -ml-1 text-zinc-500 hover:text-zinc-300 rounded cursor-grab active:cursor-grabbing focus:outline-none transition-colors"
+              title="Drag task"
             >
-              <GripVertical className="w-4 h-4" />
+              <GripVertical className="w-3.5 h-3.5" />
             </button>
             <PriorityBadge priority={task.priority} />
           </div>
 
-          {/* Quick Actions & shadcn Dropdown Menu */}
-          <div className="flex items-center gap-0.5">
+          {/* Quick Actions & Dropdown Menu */}
+          <div className="flex items-center gap-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 text-slate-400 hover:text-blue-600 hover:bg-blue-50 opacity-70 group-hover:opacity-100 transition-opacity"
+              className="h-6 w-6 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded"
               onClick={(e) => {
                 e.stopPropagation();
                 onEdit(task);
               }}
               title="Edit Task"
             >
-              <Edit2 className="w-3.5 h-3.5" />
+              <Edit2 className="w-3 h-3" />
             </Button>
 
             <DropdownMenu>
@@ -111,33 +111,33 @@ export function TaskCard({ task, onEdit, onDelete, isOverlay = false }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-7 w-7 text-slate-400 hover:text-slate-700 hover:bg-slate-100 opacity-70 group-hover:opacity-100 transition-opacity"
+                  className="h-6 w-6 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <MoreHorizontal className="w-3.5 h-3.5" />
+                  <MoreHorizontal className="w-3 h-3" />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="bg-zinc-950 border-zinc-800">
                 <DropdownMenuItem
                   onClick={(e) => {
                     e.stopPropagation();
                     onEdit(task);
                   }}
-                  className="gap-2"
+                  className="gap-2 focus:bg-zinc-800 focus:text-white"
                 >
-                  <Edit2 className="w-3.5 h-3.5 text-slate-500" />
+                  <Edit2 className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Edit Details</span>
                 </DropdownMenuItem>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator className="bg-zinc-800" />
                 <DropdownMenuItem
                   onClick={(e) => {
                     e.stopPropagation();
                     onDelete(task);
                   }}
-                  className="gap-2 text-red-600 focus:text-red-700 focus:bg-red-50"
+                  className="gap-2 text-red-400 focus:text-red-300 focus:bg-red-950/60"
                 >
-                  <Trash2 className="w-3.5 h-3.5 text-red-500" />
+                  <Trash2 className="w-3.5 h-3.5 text-red-400" />
                   <span>Delete Task</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -146,34 +146,34 @@ export function TaskCard({ task, onEdit, onDelete, isOverlay = false }) {
         </div>
 
         {/* Task Title */}
-        <h4 className="text-sm font-semibold text-slate-900 leading-snug line-clamp-2">
+        <h4 className="text-sm font-medium text-zinc-100 leading-snug line-clamp-2">
           {task.title}
         </h4>
 
         {/* Optional Description */}
         {task.description && (
-          <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-zinc-400 mt-1 line-clamp-2 leading-relaxed font-normal">
             {task.description}
           </p>
         )}
 
         {/* Footer: Due Date indicator */}
         {formattedDate && (
-          <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+          <div className="mt-3 pt-2 border-t border-zinc-800/60 flex items-center justify-between text-xs">
             <div
               className={cn(
-                'flex items-center gap-1.5 font-medium',
-                isOverdue ? 'text-red-600' : 'text-slate-500'
+                'flex items-center gap-1.5 text-[11px] font-normal',
+                isOverdue ? 'text-red-400 font-medium' : 'text-zinc-400'
               )}
             >
               {isOverdue ? (
-                <AlertCircle className="w-3.5 h-3.5 text-red-500" />
+                <AlertCircle className="w-3 h-3 text-red-400" />
               ) : (
-                <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                <Calendar className="w-3 h-3 text-zinc-500" />
               )}
               <span>{formattedDate}</span>
               {isOverdue && (
-                <span className="text-[10px] font-semibold uppercase tracking-wider bg-red-100 text-red-700 px-1.5 py-0.2 rounded">
+                <span className="text-[10px] font-medium tracking-wide uppercase px-1 py-0.2 rounded bg-red-500/10 text-red-400 border border-red-500/20">
                   Overdue
                 </span>
               )}

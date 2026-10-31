@@ -13,56 +13,55 @@ export function DashboardStats({ tasks = [] }) {
       title: 'Total Tasks',
       value: total,
       icon: Layers,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-100',
+      indicator: 'bg-zinc-400',
     },
     {
       title: 'To Do',
       value: todoCount,
       icon: ListTodo,
-      color: 'text-indigo-600',
-      bgColor: 'bg-indigo-50',
-      borderColor: 'border-indigo-100',
+      indicator: 'bg-blue-400',
     },
     {
       title: 'In Progress',
       value: inProgressCount,
       icon: Clock,
-      color: 'text-amber-600',
-      bgColor: 'bg-amber-50',
-      borderColor: 'border-amber-100',
+      indicator: 'bg-amber-400',
     },
     {
       title: 'Completed',
       value: completedCount,
       icon: CheckCircle2,
-      color: 'text-emerald-600',
-      bgColor: 'bg-emerald-50',
-      borderColor: 'border-emerald-100',
+      indicator: 'bg-emerald-400',
     },
   ];
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
       {stats.map((stat) => {
         const Icon = stat.icon;
         return (
           <Card
             key={stat.title}
-            className={`border ${stat.borderColor} shadow-none hover:shadow-sm transition-shadow`}
+            className="relative overflow-hidden rounded-xl border border-zinc-800/60 bg-zinc-900/40 hover:bg-zinc-900/60 hover:border-zinc-700/80 transition-all duration-200 group"
           >
+            {/* Top Border Subtle Shine */}
+            <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:via-white/20 transition-all duration-300" />
+
             <CardContent className="p-4 sm:p-5 flex items-center justify-between">
               <div>
-                <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-                  {stat.title}
-                </p>
-                <p className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+                <div className="flex items-center gap-1.5">
+                  <div className={`w-1.5 h-1.5 rounded-full ${stat.indicator}`} />
+                  <p className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">
+                    {stat.title}
+                  </p>
+                </div>
+                <p className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1.5 tracking-tight">
                   {stat.value}
                 </p>
               </div>
-              <div className={`p-2.5 sm:p-3 rounded-xl ${stat.bgColor} ${stat.color}`}>
-                <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+
+              <div className="p-2.5 rounded-lg bg-zinc-800/40 border border-zinc-700/40 text-zinc-400 group-hover:text-zinc-200 transition-colors">
+                <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
             </CardContent>
           </Card>

@@ -50,12 +50,25 @@ export function useTasks() {
     });
   }, [tasks, searchTerm, priorityFilter]);
 
-  // Group filtered tasks by column status
+  // Specified Feature: High Priority tasks must appear before Normal Priority tasks in each column
+  const sortTasksByPriority = (taskList) => {
+    const priorityWeights = { high: 3, medium: 2, low: 1 };
+    return [...taskList].sort((a, b) => {
+      const weightA = priorityWeights[a.priority?.toLowerCase()] || 2;
+      const weightB = priorityWeights[b.priority?.toLowerCase()] || 2;
+      if (weightB !== weightA) {
+        return weightB - weightA; // High priority (3) appears before Medium/Normal (2) and Low (1)
+      }
+      return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
+    });
+  };
+
+  // Group filtered tasks by column status with High Priority strictly ordered first
   const columns = useMemo(() => {
     return {
-      todo: filteredTasks.filter((t) => t.status === 'todo'),
-      in_progress: filteredTasks.filter((t) => t.status === 'in_progress'),
-      completed: filteredTasks.filter((t) => t.status === 'completed'),
+      todo: sortTasksByPriority(filteredTasks.filter((t) => t.status === 'todo')),
+      in_progress: sortTasksByPriority(filteredTasks.filter((t) => t.status === 'in_progress')),
+      completed: sortTasksByPriority(filteredTasks.filter((t) => t.status === 'completed')),
     };
   }, [filteredTasks]);
 

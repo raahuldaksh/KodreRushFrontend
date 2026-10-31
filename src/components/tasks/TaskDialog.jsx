@@ -98,12 +98,12 @@ export function TaskDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[480px]">
+      <DialogContent className="sm:max-w-[480px] bg-zinc-950 border-zinc-800 text-zinc-100">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-slate-900">
+          <DialogTitle className="text-xl font-bold text-white">
             {isEdit ? 'Edit Task' : 'Create New Task'}
           </DialogTitle>
-          <DialogDescription className="text-xs text-slate-500">
+          <DialogDescription className="text-xs text-zinc-400">
             {isEdit
               ? 'Update the details and priority for this task.'
               : 'Add a new task to your Kanban workflow.'}
@@ -113,8 +113,8 @@ export function TaskDialog({
         <form onSubmit={handleSubmit} className="space-y-4 pt-2">
           {/* Title Field */}
           <div className="space-y-1.5">
-            <Label htmlFor="task-title">
-              Task Title <span className="text-red-500">*</span>
+            <Label htmlFor="task-title" className="text-zinc-300">
+              Task Title <span className="text-red-400">*</span>
             </Label>
             <Input
               id="task-title"
@@ -122,15 +122,15 @@ export function TaskDialog({
               placeholder="e.g. Implement user authentication"
               value={formData.title}
               onChange={handleChange}
-              className={error ? 'border-red-400 focus-visible:ring-red-400' : ''}
+              className={error ? 'border-red-500 focus-visible:ring-red-400' : 'bg-zinc-900 border-zinc-800 text-white'}
               autoFocus
             />
-            {error && <p className="text-xs text-red-600 font-medium">{error}</p>}
+            {error && <p className="text-xs text-red-400 font-medium">{error}</p>}
           </div>
 
           {/* Description Field */}
           <div className="space-y-1.5">
-            <Label htmlFor="task-desc">Description</Label>
+            <Label htmlFor="task-desc" className="text-zinc-300">Description</Label>
             <Textarea
               id="task-desc"
               name="description"
@@ -138,38 +138,39 @@ export function TaskDialog({
               value={formData.description}
               onChange={handleChange}
               rows={3}
+              className="bg-zinc-900 border-zinc-800 text-white"
             />
           </div>
 
-          {/* Priority & Status Row with shadcn Select */}
+          {/* Priority & Status Row */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label>Priority</Label>
+              <Label className="text-zinc-300">Priority</Label>
               <Select
                 value={formData.priority}
                 onValueChange={(val) => handleSelectChange('priority', val)}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-zinc-900 border-zinc-800 text-white">
                   <SelectValue placeholder="Select priority" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="low">🟢 Low</SelectItem>
-                  <SelectItem value="medium">🟡 Medium</SelectItem>
-                  <SelectItem value="high">🔴 High</SelectItem>
+                <SelectContent className="bg-zinc-950 border-zinc-800">
+                  <SelectItem value="low">⚫ Low</SelectItem>
+                  <SelectItem value="medium">🔘 Medium</SelectItem>
+                  <SelectItem value="high">⚪ High</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-1.5">
-              <Label>Column</Label>
+              <Label className="text-zinc-300">Column</Label>
               <Select
                 value={formData.status}
                 onValueChange={(val) => handleSelectChange('status', val)}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-zinc-900 border-zinc-800 text-white">
                   <SelectValue placeholder="Select column" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-zinc-950 border-zinc-800">
                   <SelectItem value="todo">To Do</SelectItem>
                   <SelectItem value="in_progress">In Progress</SelectItem>
                   <SelectItem value="completed">Completed</SelectItem>
@@ -180,30 +181,31 @@ export function TaskDialog({
 
           {/* Due Date Field */}
           <div className="space-y-1.5">
-            <Label htmlFor="task-date">Due Date</Label>
+            <Label htmlFor="task-date" className="text-zinc-300">Due Date</Label>
             <Input
               id="task-date"
               type="date"
               name="dueDate"
               value={formData.dueDate}
               onChange={handleChange}
-              className="text-slate-800"
+              className="bg-zinc-900 border-zinc-800 text-white [color-scheme:dark]"
             />
           </div>
 
-          <DialogFooter className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+          <DialogFooter className="pt-3 border-t border-zinc-800/80 flex items-center justify-end gap-2">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
               disabled={isSubmitting}
+              className="border-zinc-700 bg-transparent text-zinc-300 hover:bg-zinc-800 hover:text-white"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="bg-blue-600 hover:bg-blue-700 text-white min-w-[100px]"
+              className="bg-white text-black hover:bg-zinc-200 min-w-[100px] font-semibold cursor-pointer"
             >
               {isSubmitting ? 'Saving...' : isEdit ? 'Save Changes' : 'Create Task'}
             </Button>

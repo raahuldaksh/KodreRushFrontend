@@ -22,51 +22,51 @@
   --color-ring: hsl(var(--ring));
 }
 
-/* Default Theme: Ultra-Clean High-Contrast Black & White (Dark Mode default) */
+/* Linear-inspired Modern Dark Theme (Default) */
 :root {
-  --background: 0 0% 4%;            /* #0a0a0a - OLED deep black */
-  --foreground: 0 0% 98%;           /* #fafafa - pure crisp white */
-  --card: 0 0% 7%;                  /* #121214 - elevated dark surface */
+  --background: 240 10% 4%;           /* #09090b */
+  --foreground: 0 0% 98%;            /* #fafafa */
+  --card: 240 6% 9%;                 /* #16161a */
   --card-foreground: 0 0% 98%;
-  --popover: 0 0% 7%;
+  --popover: 240 10% 5%;
   --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;              /* pure white primary button in dark */
-  --primary-foreground: 0 0% 9%;    /* black text on primary */
-  --secondary: 0 0% 14%;            /* #242427 */
+  --primary: 0 0% 98%;               /* Pure white high-contrast CTA */
+  --primary-foreground: 240 10% 4%;
+  --secondary: 240 5% 15%;           /* #242429 */
   --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 14%;
-  --muted-foreground: 0 0% 63%;     /* #a1a1aa - subtle gray */
-  --accent: 0 0% 14%;
+  --muted: 240 5% 15%;
+  --muted-foreground: 240 5% 65%;    /* #a1a1aa */
+  --accent: 240 5% 15%;
   --accent-foreground: 0 0% 98%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 16%;               /* #27272a - crisp borders */
-  --input: 0 0% 16%;
+  --border: 240 5% 18%;              /* Subtle border #2c2c32 */
+  --input: 240 5% 18%;
   --ring: 0 0% 98%;
-  --radius: 0.625rem;
+  --radius: 0.75rem;
 }
 
-/* Light Theme toggle support */
+/* Pristine Clean Light Theme */
 .light {
-  --background: 0 0% 100%;          /* #ffffff */
-  --foreground: 0 0% 9%;            /* #18181b */
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 9%;
+  --background: 0 0% 99%;            /* #fcfcfd */
+  --foreground: 240 10% 4%;          /* #09090b */
+  --card: 0 0% 100%;                 /* #ffffff */
+  --card-foreground: 240 10% 4%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 9%;
-  --primary: 0 0% 9%;               /* black primary in light */
+  --popover-foreground: 240 10% 4%;
+  --primary: 240 10% 4%;             /* Deep black CTA */
   --primary-foreground: 0 0% 98%;
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
-  --accent: 0 0% 96%;
-  --accent-foreground: 0 0% 9%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 10% 4%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+  --accent: 240 5% 96%;
+  --accent-foreground: 240 10% 4%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 89%;               /* #e4e4e7 */
-  --input: 0 0% 89%;
-  --ring: 0 0% 9%;
+  --border: 240 6% 90%;              /* #e4e4e7 */
+  --input: 240 6% 90%;
+  --ring: 240 10% 4%;
 }
 
 * {
@@ -79,5 +79,14 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.12), transparent),
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+.light body {
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(24, 24, 27, 0.03), transparent),
+    radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0.02) 0%, transparent 60%);
 }

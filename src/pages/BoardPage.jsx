@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import DashboardStats from '@/components/board/DashboardStats';
 import KanbanBoard from '@/components/board/KanbanBoard';
@@ -20,6 +20,17 @@ export function BoardPage() {
     updateTaskStatus,
     deleteTask,
   } = useTasks();
+
+  // Theme State (Default: Dark OLED Black & White)
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  useEffect(() => {
+    if (isLightMode) {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+    }
+  }, [isLightMode]);
 
   // Dialog States
   const [isTaskDialogOpen, setIsTaskDialogOpen] = useState(false);
@@ -55,7 +66,7 @@ export function BoardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 pb-12">
+    <div className={`min-h-screen ${isLightMode ? 'bg-[#fafafa] text-zinc-900' : 'bg-[#09090b] text-zinc-100'} pb-16 transition-colors duration-200`}>
       {/* Top Header */}
       <Header
         searchTerm={searchTerm}
@@ -63,6 +74,8 @@ export function BoardPage() {
         priorityFilter={priorityFilter}
         setPriorityFilter={setPriorityFilter}
         onOpenCreateDialog={() => handleOpenCreateDialog('todo')}
+        isLightMode={isLightMode}
+        onToggleTheme={() => setIsLightMode((prev) => !prev)}
       />
 
       {/* Main Content Area */}
