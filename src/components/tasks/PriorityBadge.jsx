@@ -6,19 +6,19 @@ export function PriorityBadge({ priority = 'medium', className }) {
 
   const configs = {
     high: {
-      label: 'High',
-      badgeClass: 'bg-red-500/10 text-red-400 border-red-500/20',
-      dotClass: 'bg-red-400',
+      label: 'High Priority',
+      badgeClass: 'bg-rose-500/15 text-rose-300 border-rose-500/30 shadow-[0_0_10px_rgba(244,63,94,0.15)]',
+      dotClass: 'bg-rose-400 shadow-[0_0_6px_rgba(244,63,94,0.8)]',
     },
     medium: {
       label: 'Medium',
-      badgeClass: 'bg-amber-500/10 text-amber-300 border-amber-500/20',
-      dotClass: 'bg-amber-400',
+      badgeClass: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+      dotClass: 'bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.8)]',
     },
     low: {
       label: 'Low',
-      badgeClass: 'bg-zinc-500/10 text-zinc-400 border-zinc-700/40',
-      dotClass: 'bg-zinc-400',
+      badgeClass: 'bg-slate-800/80 text-slate-400 border-slate-700/60',
+      dotClass: 'bg-slate-400',
     },
   };
 
@@ -27,7 +27,7 @@ export function PriorityBadge({ priority = 'medium', className }) {
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-medium border tracking-wide select-none',
+        'inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-semibold border select-none tracking-tight',
         config.badgeClass,
         className
       )}
